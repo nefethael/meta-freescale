@@ -312,3 +312,8 @@ IMAGE_TYPEDEP_sdcard_append = " \
     ${@bb.utils.contains('IMAGE_FSTYPES', 'uboot-mxsboot-sdcard', 'uboot-mxsboot-sdcard', '', d)} \
     ${@bb.utils.contains('IMAGE_FSTYPES', 'barebox-mxsboot-sdcard', 'barebox-mxsboot-sdcard', '', d)} \
 "
+
+do_image_wic[depends] += " \
+    ${@bb.utils.contains('IMAGE_FSTYPES', 'uboot-mxsboot-sdcard', \
+                                          '${IMAGE_BASENAME}:do_image_uboot_mxsboot_sdcard', '', d)} \
+"
